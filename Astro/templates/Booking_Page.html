@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Consultation Booking</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #a5c5cf;
+    }
+    .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    }
+    .consultation-form {
+    flex: 1;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    margin-bottom: 20px;
+    }
+    .payment-mode {
+    flex: 1;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    margin-bottom: 20px;
+    }
+    .form-group {
+    margin-bottom: 20px;
+    }
+    label {
+    font-weight: bold;
+    }
+    @media (max-width: 768px) {
+    .container {
+    flex-direction: column;
+    align-items: center;
+    }
+    .consultation-form,
+    .payment-mode {
+    margin-right: 0;
+    margin-left: 0;
+    }
+    }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    }
+    th.sub_total, td.sub_total {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+    }
+    td.total {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+    font-weight: 600;
+    }
+    th {
+    background-color: #4caf50;
+    color: white;
+    }
+    .PlaceOrder_button{
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    }
+    .PlaceOrder_button:hover {
+    background-color: #45a049;
+    }
+    .payment-info{
+    font-size: 14px;
+    font-style: italic;
+    color: #62605f;
+    }
+    .form-check {
+    display: inline-block;
+    margin-right: 10px; /* Optional: Add some margin between radio buttons */
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="consultation-form">
+        <h2 class="mt-3 mb-3">Consultation Booking Form</h2>
+        <form action="/Booking_User/" method="post">
+          <div class="form-group">
+            <label for="name">Name:<span style="color: red;">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" value="Purvesh" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email_id">Email:</label>
+            <input type="email" class="form-control" id="email_id" name="email_id" value="P@g.com" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label for="mobile_no">Phone Number:</label>
+            <input type="tel" class="form-control" maxlength="10" id="mobile_no" name="mobile_no" placeholder="e.g:8160123022" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <br>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked="checked">
+              <label class="form-check-label" for="male" >Male</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="other" value="other" required>
+              <label class="form-check-label" for="other">Other</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="country">Birth Country:<span style="color: red;">*</span></label>
+            <select id="country" name="birth_country" class="form-control" onchange="populateStates()">
+              <option name="birth_country" disabled selected title="Select your Country">Select Country</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="state">Birth State:<span style="color: red;">*</span></label>
+            <select id="state" name="birth_state" class="form-control" onchange="populateCities()">
+              <option name="birth_state">Select State</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city">Birth City:<span style="color: red;">*</span></label>
+            <select id="city" name="birth_city" class="form-control">
+              <option name="birth_city">Select City</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="birth_date">Birth Date:<span style="color: red;">*</span></label>
+            <input type="date" class="form-control" id="birth_date" name="birth_date" required>
+          </div>
+          <div class="form-group">
+            <label for="birth_time">Birth Time:<span style="color: red;">*</span></label>
+            <input type="time" class="form-control" id="birth_time" name="birth_time" required>
+          </div>
+          <div class="form-group">
+            <label for="language">Language:</label>
+            <select id="language" name="language" class="form-control" required>
+              <option value="" disabled selected>Select Language</option>
+              <!-- <option value="english">English</option> -->
+              <option selected value="Hindi">Hindi</option>
+              <option value="Gujarati">Gujarati</option>
+            </select>
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="timeslot">Preferred Timeslot:</label>
+            <select class="form-control" id="timeslot" name="booking_slot" required>
+              <option value="" disabled selected>Select a timeslot</option>
+              <option value="morning">Morning (10AM -12PM)</option>
+              <option value="afternoon">Afternoon (01PM-04PM)</option>
+              <option value="evening">Evening (05PM-08PM)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes:</label>
+            <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Enter any additional notes"></textarea>
+          </div>
+          <!-- <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button> -->
+      
+
+        <script>
+          function triggerButtonClick() {
+          document.getElementById('submit-btn').click();
+          document.getElementById('pay-btn').click();
+          }
+          // function button1Clicked() {
+          // // alert('Button 1 Clicked!');
+          // }
+          // function button2Clicked() {
+          // // alert('Button 2 Clicked!');
+          // }
+          </script>
+      </div>
+      <div class="payment-mode">
+        <div class="right-form">
+          <h3>Your Order</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th class="sub_total">Sub Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{Product_ID}} x 1</td>
+                <td class="sub_total">{{ display_amount }}</td>
+              </tr>
+              <tr>
+                <td>GST {{applied_GST}}%</td>
+                <td class="sub_total">{{ gst }}</td>
+              </tr>
+              <tr>
+                <td>Sub Total</td>
+                <td class="sub_total">{{ display_amount }}</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">Total</td>
+                <td class="total">{{ total_payment }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+              <p class="payment-info"> *Credit Card/Debit Card/NetBanking </p>
+              <p class="payment-info">
+                Pay securely by Credit or Debit card or Internet Banking through Razorpay.
+              Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+            </div>
+            <button class="PlaceOrder_button" type="submit" style="display:block;">Place Order</button>
+          
+          <!-- <button class="PlaceOrder_button" value="submit">Place Order</button> -->
+          <!-- </center> -->
+        </div>
+      </div>
+    </div>
+  </form>
+    <!-- Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- <script>
+    function submitAllForms() {
+    var forms = document.getElementsByTagName('form');
+    
+    for (var i = 0; i < forms.length; i++) {
+    // Set the action attribute of each form to the desired URL
+    forms[i].method = 'post';
+    forms[i].action = '/paymenthandler/';
+    forms[i].submit();
+    }
+    }
+    </script> -->
+    <!--  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Get all required input fields
+    var requiredFields = document.querySelectorAll('.consultation-form input[required], .consultation-form select[required], .consultation-form textarea[required]');
+    // Check the form validity on input change
+    requiredFields.forEach(function (field) {
+    field.addEventListener('input', checkFormValidity);
+    });
+    function checkFormValidity() {
+    // Check if all required fields are filled
+    var allFieldsFilled = Array.from(requiredFields).every(function (field) {
+    return field.value.trim() !== '';
+    });
+    // Enable or disable the button based on form validity
+    var placeOrderButton = document.getElementById('pay-btn');
+    placeOrderButton.classList.toggle('disable-btn', !allFieldsFilled);
+    placeOrderButton.disabled = !allFieldsFilled;
+    }
+    });
+    </script> -->
+    <script>
+    var options = {
+    
+    // Enter the Key ID generated from the Dashboard
+    key: "{{ razorpay_merchant_key }}",
+    
+    // Amount is in currency subunits.
+    // Default currency is INR. Hence,
+    // 50000 refers to 50000 paise
+    amount: "{{ razorpay_amount }}",
+    currency: "{{ currency }}",
+    
+    // Your/store name.
+    name: "Astro",
+    
+    // Pass the `id` obtained in the response of Step 1
+    order_id: "{{ razorpay_order_id }}",
+    callback_url: "{{ callback_url }}",
+    };
+    
+    // initialise razorpay with the options.
+    var rzp1 = new Razorpay(options);
+    
+    // add event listener to the payment button.
+    document.getElementById("pay-btn").onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+    };
+    </script>
+    <script>
+    // Replace this dataset with your own containing countries, states, and cities
+    const dataset = {
+    "Australia": {
+    "New South Wales (NSW)": ["Sydney (capital city)", "Newcastle", "Wollongong", "Central Coast", "Albury", "Maitland", "Wagga Wagga", "Coffs Harbour", "Tamworth", "Orange", "Dubbo", "Bathurst", "Nowra", "Lismore", "Armidale"],
+    "Victoria (VIC)": ["Melbourne (capital city)", "Geelong", "Ballarat", "Bendigo", "Shepparton", "Melton", "Mildura", "Warrnambool", "Sunbury", "Traralgon", "Wangaratta", "Moe–Newborough", "Horsham", "Sale", "Echuca"],
+    "Queensland (QLD)": ["Brisbane (capital city)", "Gold Coast", "Cairns", "Townsville", "Sunshine Coast", "Toowoomba", "Mackay", "Rockhampton", "Bundaberg", "Hervey Bay", "Gladstone", "Maryborough", "Mount Isa", "Gympie", "Warwick"],
+    "South Australia (SA)": ["Adelaide (capital city)", "Mount Gambier", "Whyalla", "Murray Bridge", "Port Augusta", "Port Pirie", "Port Lincoln", "Victor Harbor", "Gawler", "Goolwa", "Maitland", "Port Broughton", "Renmark", "Kadina", "Nuriootpa"],
+    "Western Australia (WA)": ["Perth (capital city)", "Albany", "Bunbury", "Geraldton", "Kalgoorlie-Boulder", "Karratha", "Broome", "Port Hedland", "Esperance", "Carnarvon", "Northam", "Manjimup", "Mandurah", "Busselton", "Collie"],
+    "Tasmania (TAS)": ["Hobart (capital city)", "Launceston", "Devonport", "Burnie", "Kingston", "Ulverstone", "New Norfolk", "Wynyard", "George Town", "Sorell", "Longford", "Queenstown", "Deloraine", "Smithton", "Latrobe"]
+    },
+    
+    "Canada": {
+    "Alberta": ["Calgary (capital city)", "Edmonton", "Red Deer", "Lethbridge", "St. Albert", "Medicine Hat", "Grande Prairie", "Airdrie", "Spruce Grove", "Leduc", "Fort McMurray", "Lloydminster", "Camrose", "Brooks", "Canmore"],
+    "British Columbia": ["Vancouver (capital city)", "Surrey", "Burnaby", "Kelowna", "Kamloops", "Victoria", "Abbotsford", "Nanaimo", "Prince George", "Chilliwack", "Kootenay", "Richmond", "Delta", "New Westminster", "Langley"],
+    "Manitoba": ["Winnipeg (capital city)", "Brandon", "Steinbach", "Thompson", "Portage la Prairie", "Selkirk", "Winkler", "Dauphin", "Morden", "Flin Flon", "Stonewall", "Niverville", "Swan River", "Altona", "Killarney"],
+    "New Brunswick": ["Fredericton (capital city)", "Saint John", "Moncton", "Dieppe", "Miramichi", "Edmundston", "Bathurst", "Campbellton", "Oromocto", "Grand Falls", "Shediac", "Caraquet", "St. Stephen", "Dalhousie", "Sussex"],
+    "Newfoundland and Labrador": ["St. John's (capital city)", "Mount Pearl", "Corner Brook", "Conception Bay South", "Grand Falls-Windsor", "Paradise", "Gander", "Labrador City", "Stephenville", "Carbonear", "Clarenville", "Bay Roberts", "Torbay", "Grand Bank", "Marystown"],
+    "Nova Scotia": ["Halifax (capital city)", "Dartmouth", "Sydney", "Truro", "New Glasgow", "Glace Bay", "Kentville", "Amherst", "Bridgewater", "Yarmouth", "Antigonish", "Wolfville", "Westville", "Windsor", "Liverpool"],
+    "Ontario": ["Toronto (capital city)", "Ottawa", "Mississauga", "Brampton", "Hamilton", "London", "Markham", "Vaughan", "Kitchener", "Windsor", "Oshawa", "Barrie", "St. Catharines", "Richmond Hill", "Oakville"],
+    "Prince Edward Island": ["Charlottetown (capital city)", "Summerside", "Stratford", "Cornwall", "Montague", "Kensington", "Souris", "Alberton", "Tignish", "O'Leary", "Abram-Village", "Borden-Carleton", "Crapaud", "North Rustico", "York"],
+    "Quebec": ["Montreal (capital city)", "Quebec City", "Laval", "Gatineau", "Longueuil", "Sherbrooke", "Saguenay", "Levis", "Trois-Rivieres", "Terrebonne", "Saint-Jean-sur-Richelieu", "Repentigny", "Brossard", "Drummondville", "Saint-Jerome"],
+    "Saskatchewan": ["Regina (capital city)", "Saskatoon", "Prince Albert", "Moose Jaw", "Yorkton", "Swift Current", "North Battleford", "Estevan", "Weyburn", "Corman Park", "Lloydminster", "Martensville", "Meadow Lake", "Humboldt", "Melville"]
+    },
+    "France": {
+    "Auvergne-Rhône-Alpes": ["Lyon (capital city)", "Saint-Étienne", "Grenoble", "Clermont-Ferrand", "Chambéry", "Annecy", "Valence", "Roanne", "Bourg-en-Bresse", "Villeurbanne", "Vénissieux", "Vaulx-en-Velin", "Caluire-et-Cuire", "Saint-Priest", "Bron"],
+    "Bourgogne-Franche-Comté": ["Dijon (capital city)", "Besançon", "Belfort", "Chalon-sur-Saône", "Nevers", "Auxerre", "Mâcon", "Montbéliard", "Dole", "Pontarlier", "Beaune", "Lons-le-Saunier", "Autun", "Seloncourt", "Valentigney"],
+    "Brittany": ["Rennes (capital city)", "Brest", "Quimper", "Lorient", "Vannes", "Saint-Malo", "Saint-Brieuc", "Lanester", "Fougères", "Dinan", "Concarneau", "Morlaix", "Vitré", "Guingamp", "Auray"],
+    "Centre-Val de Loire": ["Orléans (capital city)", "Tours", "Blois", "Chartres", "Châteauroux", "Bourges", "Vierzon", "Fleury-les-Aubrais", "Saint-Jean-de-Braye", "Saint-Pierre-des-Corps", "Saint-Cyr-sur-Loire", "Olivet", "Romorantin-Lanthenay", "Vendôme", "Loches"],
+    "Corsica": ["Ajaccio (capital city)", "Bastia", "Corte", "Calvi", "Porto-Vecchio", "Ile Rousse", "Aléria", "Propriano", "Ghisonaccia", "Biguglia", "Lucciana", "Casanova", "Ville-di-Pietrabugno", "Penta-di-Casinca", "San-Martino-di-Lota"],
+    "Grand Est": ["Strasbourg (capital city)", "Mulhouse", "Reims", "Metz", "Nancy", "Colmar", "Troyes", "Châlons-en-Champagne", "Charleville-Mézières", "Thionville", "Epinal", "Saint-Dizier", "Vandoeuvre-lès-Nancy", "Illkirch-Graffenstaden", "Sarreguemines"],
+    "Hauts-de-France": ["Lille (capital city)", "Amiens", "Roubaix", "Tourcoing", "Dunkerque", "Calais", "Villeneuve-d'Ascq", "Saint-Quentin", "Beauvais", "Compiègne", "Arras", "Valenciennes", "Cambrai", "Douai", "Laon"],
+    "Île-de-France": ["Paris (capital city)", "Versailles", "Boulogne-Billancourt", "Saint-Denis", "Argenteuil", "Montreuil", "Nanterre", "Vitry-sur-Seine", "Créteil", "Asnières-sur-Seine", "Courbevoie", "Saint-Maur-des-Fossés", "Champigny-sur-Marne", "Aulnay-sous-Bois", "Rueil-Malmaison"],
+    "Normandy": ["Rouen (capital city)", "Caen", "Le Havre", "Evreux", "Cherbourg-en-Cotentin", "Dieppe", "Saint-Étienne-du-Rouvray", "Sotteville-lès-Rouen", "Alençon", "Vernon", "Le Grand-Quevilly", "Le Petit-Quevilly", "Hérouville-Saint-Clair", "Lisieux", "Saint-Lô"],
+    "Nouvelle-Aquitaine": ["Bordeaux (capital city)", "Limoges", "Pau", "Merignac", "Perigueux", "La Rochelle", "Bayonne", "Angouleme", "Pessac", "Biarritz", "Agen", "Mont-de-Marsan", "Talence", "Anglet", "Poitiers"],
+    "Occitanie": ["Toulouse (capital city)", "Montpellier", "Nîmes", "Perpignan", "Carcassonne", "Béziers", "Albi", "Narbonne", "Colomiers", "Montauban", "Castres", "Pau", "Muret", "Rodez", "Tournefeuille"],
+    "Pays de la Loire": ["Nantes (capital city)", "Angers", "Le Mans", "Saint-Nazaire", "Cholet", "La Roche-sur-Yon", "Laval", "Saint-Herblain", "Rezé", "Saumur", "Les Sables-d'Olonne", "Château-d'Olonne", "Saint-Sébastien-sur-Loire", "Orvault", "Ancenis"],
+    "Provence-Alpes-Côte d'Azur": ["Marseille (capital city)", "Nice", "Toulon", "Aix-en-Provence", "Avignon", "Antibes", "Cannes", "La Seyne-sur-Mer", "Hyères", "Fréjus", "Arles", "Grasse", "Martigues", "Aubagne", "Draguignan"]
+    },
+    "India": {
+    "Andaman and Nicobar Islands": ["Port Blair"],
+    "Andhra Pradesh": ["Amaravati (capital city)", "Visakhapatnam", "Vijayawada", "Tirupati", "Guntur", "Rajahmundry", "Kakinada", "Nellore", "Kurnool", "Kadapa", "Anantapur", "Machilipatnam", "Tenali", "Nandyal", "Ongole"],
+    "Arunachal Pradesh": ["Itanagar (capital city)", "Naharlagun", "Tawang", "Bomdila", "Ziro", "Daporijo", "Along", "Pasighat", "Tezu", "Namsai", "Roing", "Anini", "Khonsa", "Changlang", "Longding"],
+    "Assam": ["Dispur (capital city)", "Guwahati", "Silchar", "Dibrugarh", "Nagaon", "Jorhat", "Tinsukia", "Tezpur", "Sivasagar", "North Lakhimpur", "Bongaigaon", "Karimganj", "Dhubri", "Diphu", "Barpeta"],
+    "Bihar": ["Patna (capital city)", "Gaya", "Bhagalpur", "Muzaffarpur", "Nalanda", "Darbhanga", "Bihar Sharif", "Aurangabad", "Sasaram", "Hajipur", "Siwan", "Motihari", "Purnia", "Chhapra", "Arrah"],
+    "Chandigarh": ["Chandigarh"],
+    "Chhattisgarh": ["Raipur (capital city)", "Bhilai", "Bilaspur", "Korba", "Durg", "Raigarh", "Rajnandgaon", "Jagdalpur", "Ambikapur", "Dhamtari", "Chirmiri", "Kawardha", "Mahasamund", "Bemetara", "Baloda Bazar"],
+    "Dadra and Nagar Haveli and Daman and Diu": ["Daman", "Diu", "Dadra", "Nagar Haveli"],
+    "Delhi": ["New Delhi", "Delhi"],
+    "Goa": ["Panaji (capital city)", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Bicholim", "Curchorem", "Sanguem", "Quepem", "Cuncolim", "Calangute", "Canacona", "Cortalim", "Davorlim", "Aldona"],
+    "Gujarat": ["Gandhinagar (capital city)", "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Gandhidham", "Nadiad", "Mehsana", "Morbi", "Surendranagar", "Bharuch", "Anand"],
+    "Haryana": ["Chandigarh (capital city)", "Faridabad", "Gurgaon", "Panipat", "Ambala", "Yamunanagar", "Rohtak", "Hisar", "Karnal", "Sonipat", "Panchkula", "Bhiwani", "Jind", "Sirsa", "Thanesar"],
+    "Himachal Pradesh": ["Shimla (capital city)", "Mandi", "Solan", "Dharamshala", "Kullu", "Chamba", "Una", "Bilaspur", "Hamirpur", "Nahan", "Paonta Sahib", "Nurpur", "Sundarnagar", "Jogindernagar", "Palampur"],
+    "Jharkhand": ["Ranchi (capital city)", "Jamshedpur", "Dhanbad", "Bokaro", "Deoghar", "Phusro", "Hazaribagh", "Giridih", "Ramgarh", "Medininagar", "Chirkunda", "Jhumri Tilaiya", "Gumia", "Bokaro Steel City", "Saunda"],
+    "Karnataka": ["Bengaluru (capital city)", "Mysuru", "Hubballi", "Mangaluru", "Belagavi", "Davanagere", "Ballari", "Vijayapura", "Kalaburagi", "Hassan", "Shivamogga", "Tumakuru", "Raichur", "Bidar", "Hospet"],
+    "Kerala": ["Thiruvananthapuram (capital city)", "Kochi", "Kozhikode", "Kollam", "Thrissur", "Kannur", "Alappuzha", "Kottayam", "Palakkad", "Malappuram", "Pathanamthitta", "Kottarakkara", "Punalur", "Attingal", "Neyyattinkara"],
+    "Lakshadweep": ["Kavaratti (capital city)", "Agatti", "Amini", "Andrott", "Bitra", "Chetlat", "Kadmat", "Kalpeni", "Kilthan", "Minicoy"],
+    "Madhya Pradesh": ["Bhopal (capital city)", "Indore", "Jabalpur", "Gwalior", "Ujjain", "Sagar", "Dewas", "Satna", "Ratlam", "Rewa", "Murwara (Katni)", "Singrauli", "Burhanpur", "Khandwa", "Bhind"],
+    "Maharashtra": ["Mumbai (capital city)", "Pune", "Nagpur", "Thane", "Nashik", "Kalyan-Dombivali", "Vasai-Virar", "Aurangabad", "Navi Mumbai", "Solapur", "Mira-Bhayandar", "Amravati", "Nanded", "Kolhapur", "Akola"],
+    "Manipur": ["Imphal (capital city)", "Thoubal", "Bishnupur", "Churachandpur", "Kakching", "Ukhrul", "Lilong", "Mayang Imphal", "Wangoi", "Kakching Khunou", "Lamai", "Kumbi", "Kangpokpi", "Sugnu", "Jiribam"],
+    "Meghalaya": ["Shillong (capital city)", "Tura", "Nongstoin", "Jowai", "Baghmara", "Williamnagar", "Nongpoh", "Resubelpara", "Khliehriat", "Mairang", "Mawkyrwat", "Sohra", "Dawki", "Ranikor", "Cherrapunji"],
+    "Mizoram": ["Aizawl (capital city)", "Lunglei", "Saiha", "Champhai", "Serchhip", "Khawzawl", "Kolasib", "Lawngtlai", "Hnahthial", "Saitual", "Zawlnuam"],
+    "Nagaland": ["Kohima (capital city)", "Dimapur", "Mokokchung", "Tuensang", "Wokha", "Zunheboto", "Phek", "Kiphire", "Meluri", "Pfutsero", "Chumukedima", "Changtongya", "Tseminyu", "Noklak", "Shamator"],
+    "Odisha": ["Bhubaneswar (capital city)", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Puri", "Balasore", "Bhadrak", "Baripada", "Jharsuguda", "Brahmapur", "Jeypore", "Bargarh", "Rayagada", "Bhawanipatna"],
+    "Puducherry": ["Puducherry (capital city)", "Karaikal", "Mahe", "Yanam"],
+    "Punjab": ["Chandigarh (capital city)", "Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Hoshiarpur", "Mohali", "Batala", "Pathankot", "Moga", "Abohar", "Mansa", "Firozpur", "Rupnagar"],
+    "Rajasthan": ["Jaipur (capital city)", "Jodhpur", "Kota", "Bikaner", "Ajmer", "Udaipur", "Bhilwara", "Alwar", "Bharatpur", "Sikar", "Pali", "Sri Ganganagar", "Kishangarh", "Beawar", "Hanumangarh"],
+    "Sikkim": ["Gangtok (capital city)", "Namchi", "Mangan", "Jorethang", "Singtam", "Rangpo", "Gyalshing", "Soreng", "Naya Bazar", "Majhitar", "Melli", "Lachung", "Nanga", "Jorethang", "Pakyong"],
+    "Tamil Nadu": ["Chennai (capital city)", "Coimbatore", "Madurai"]
+    },
+    
+    // Add more countries as needed
+    };
+    const countrySelect = document.getElementById("country");
+    const stateSelect = document.getElementById("state");
+    const citySelect = document.getElementById("city");
+    // Populate countries
+    Object.keys(dataset).forEach(country => {
+    const option = document.createElement("option");
+    option.value = country;
+    option.textContent = country;
+    countrySelect.appendChild(option);
+    });
+    // Function to populate states based on the selected country
+    function populateStates() {
+    const selectedCountry = countrySelect.value;
+    stateSelect.innerHTML = "<option value=''>Select State</option>";
+    if (selectedCountry) {
+    Object.keys(dataset[selectedCountry]).forEach(state => {
+    const option = document.createElement("option");
+    option.value = state;
+    option.textContent = state;
+    stateSelect.appendChild(option);
+    });
+    }
+    }
+    // Function to populate cities based on the selected state
+    function populateCities() {
+    const selectedCountry = countrySelect.value;
+    const selectedState = stateSelect.value;
+    citySelect.innerHTML = "<option value=''>Select City</option>";
+    if (selectedCountry && selectedState) {
+    dataset[selectedCountry][selectedState].forEach(city => {
+    const option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    citySelect.appendChild(option);
+    });
+    }
+    }
+    </script>
+  </body>
+</html>

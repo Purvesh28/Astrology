@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic -->
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<!-- Site Metas -->
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>Astrology</title>
+		<!-- bootstrap core css -->
+		<link rel="stylesheet" href="/static/css/bootstrap.css" />
+		<!-- Custom styles for this template -->
+		<link href="/static/css/style.css" rel="stylesheet" />
+		<!-- responsive style -->
+		<link href="/static/css/responsive.css" rel="stylesheet" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+		<style type="text/css">
+		body{
+				font-family: 'Montserrat', sans-serif;
+			}
+		
+		.slider_heading{
+			font-size: 36px;
+			}
+		p{
+			font-size: 18px;
+			word-break: break;
+			color: #fff;
+		}
+		h2{
+			font-size: 36px;
+			color: #fff;
+
+
+		}		
+		h3 {
+		font-size: 24px;
+		}
+
+		h4 {
+		font-size: 4px;
+		}
+		.product_box {
+		width: 150px;
+		height: 250px;
+		display: flex;
+		flex-direction: column;
+		align-items: left;
+		margin: 0 10px 10px 10px;
+		word-wrap: break-word;
+		}
+		.prev{
+			float: left;
+			border: 0px solid;
+			margin-top: -150px;
+			padding: 15px 20px 15px 20px;
+			background-color: transparent;
+			box-shadow: 2px 2px 5px 1px #000;
+		}
+		.next{
+			float: right;
+			border: 0px solid;
+			margin-top: -150px;
+			padding: 15px 20px 15px 20px;
+			background-color: transparent;
+			box-shadow: 2px 2px 5px 1px #000;
+		}
+		.client_section .carousel-control-prev,
+		.client_section .carousel-control-next {
+		position: absolute;
+		top: initial;
+		bottom: -50px;
+		width: 45px;
+		height: 45px;
+		border: none;
+		border-radius: 100%;
+		opacity: 1;
+		background-repeat: no-repeat;
+		background-size: 28px;
+		background-position: center;
+		transform: translateY(-50%);
+		background-color: #313232;
+		color: #fefefe;
+		text-align: center;
+		}
+		
+		.mySlides {display: none;}
+		img_slide {vertical-align: middle;}
+		/* Slideshow container */
+		.slideshow-container {
+		max-width: 1000px;
+		position: relative;
+		margin: auto;
+		}
+		/* Caption text */
+		.text {
+		color: #f2f2f2;
+		font-size: 15px;
+		padding: 8px 12px;
+		position: absolute;
+		bottom: 8px;
+		width: 100%;
+		text-align: center;
+		}
+		/* Number text (1/3 etc) */
+		.numbertext {
+		color: #f2f2f2;
+		font-size: 12px;
+		padding: 8px 12px;
+		position: absolute;
+		top: 0;
+		}
+		/* The dots/bullets/indicators */
+		.dot {
+		height: 15px;
+		width: 15px;
+		margin: 0 2px;
+		background-color: #bbb;
+		border-radius: 50%;
+		display: inline-block;
+		transition: background-color 0.6s ease;
+		}
+		.active {
+		background-color: #717171;
+		}
+		/* Fading animation */
+		.fade {
+		animation-name: fade;
+		animation-duration: 1.5s;
+		}
+		@keyframes fade {
+		from {opacity: .4}
+		to {opacity: 1}
+		}
+		/* On smaller screens, decrease text size */
+		@media only screen and (max-width: 300px) {
+		.text {font-size: 11px}
+		}
+		
+		#floating-button {
+		position: fixed;
+		bottom: 5%;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: #de7607;
+		color: #fff;
+		border: none;
+		padding: 15px 20px;
+		font-size: 16px;
+		cursor: pointer;
+		border-radius: 5px;
+		box-shadow: -5px 5px 0px 0px #f3a95a;
+		animation: moveLeftToRight 1s infinite linear;
+		border: 2px solid #ff5;
+		}
+		
+		@keyframes moveLeftToRight {
+		0%, 100% {
+		transform: translateX(-125px);
+		}
+		50% {
+		transform: translateX(-115px);
+		}
+		}
+		@media only screen and (max-width: 768px) {
+		#floating-button {
+		bottom: 5%;
+		}
+		}
+		#floating_button_whatsapp {
+		position: fixed;
+		bottom: 1%;
+		right: 10px;
+		color: #fff;
+		padding: 2px 5px;
+		font-size: 16px;
+		cursor: pointer;
+		border:0px dotted #111;
+		}
+		img{
+		color: #fff;
+		}
+		/*##Card Listing Sun Points Sun images as dots*/
+		li::before {
+		/* Unicode for a bullet or nothing */
+		content: "";
+		/* Styles for Indentation*/
+		height: 15px;
+		width: 15px;
+		background: violet;
+		display: inline-block;
+		margin-left: -1em;
+		margin-right: 0.5em;
+		margin-bottom: 1px;
+		border-radius: 50%;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cfilter id='filter-cjl800yec'%3E%3CfeTurbulence baseFrequency='0.4' numOctaves='3' seed='1'%3E%3C/feTurbulence%3E%3CfeColorMatrix class='anim' type='hueRotate' values='0'%3E%3Canimate attributeName='values' from='0' to='360' dur='4s' repeatCount='indefinite'%3E%3C/animate%3E%3C/feColorMatrix%3E%3CfeColorMatrix values='-0.5 3.6 0.4 -0.1 2.7 -0.7 0.3 -1.1 1.2 0.4 -4.5 2.4 3.3 -3.7 -1.3 -0.7 -0.4 -4.3 4.3 1.6'%3E%3C/feColorMatrix%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='rgb(178,3,4)' class='bgRect'%3E%3C/rect%3E%3Crect width='100%25' height='100%25' filter='url(%23filter-cjl800yec)'%3E%3C/rect%3E%3C/svg%3E");
+		box-shadow: inset 1px 1px 2px rgba(255, 255, 100, 27),
+		0 0 9px rgba(255, 255, 255, 50), 0 0 7px rgba(255, 255, 155, 50);
+		}
+		li{
+			margin-bottom: 15px;
+			color: #fff;
+			font-size: 18px;
+			weight: 500;
+		}
+		ul{
+			margin-bottom: 30px;
+		}
+		
+		.card{
+																								/*			background-image: url("/static/images/card_bg.jpg");*/
+		padding: 10px 5px 25px 0px;
+		background-color: #00556c;
+		border:0px solid;
+		margin: 10px;
+		border-radius: 10px;
+		box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+		}
+		.sub_card{
+			box-shadow: #222 0px 5px 5px;
+		}
+		.problem_card{
+			border:0px solid;
+			margin: 10px;
+			margin-bottom: 20px;
+			background-color: #ed9326;
+			border-radius: 10px;
+			box-shadow: #222 0px 5px 5px;
+		}
+		hr{
+			border: 1px solid #ccc;
+		}
+		.main_page{
+			border: 0px solid;
+			background-color: #08344e;																								
+			background-repeat: no-repeat, repeat;
+			background-position: center;
+			background-size: cover;
+		}
+		.main_page_para{
+			font-size: 16px;
+			color: orange;
+	        padding: 10px;
+	        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+		}
+		/* Style the modal */
+		.modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgba(0, 0, 0, 0.7);
+		}
+		/* Style the modal content */
+		.modal-content {
+		position: relative;
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+		max-width: 300px;
+		text-align: center;
+		}
+		/* Style the close button */
+		.close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 10px;
+		cursor: pointer;
+		}
+		/* Add responsiveness */
+		@media screen and (max-width: 600px) {
+		.modal-content {
+		width: 100%;
+		}
+		}
+		.responsive-container {
+		border: 0px dotted;
+		padding-top: 15%;
+		word-wrap: break-word;
+		}
+		
+		.main_page_para {
+		font-size: 16px;
+		}
+		.info-container {
+		border: 0px solid;
+		width: 50%;
+		float: left;
+		}
+		.info-item {
+		border: 0px solid;
+		}
+		img {
+		border: 0px solid;
+		border-radius: 50%;
+		background-color: #ff8533;
+		}
+		.slider-btn {
+		font-size: 16px;
+		color: #111;
+		}
+		@media (max-width: 768px) {
+		.responsive-container {
+		padding-top: 30%;
+		}
+
+		.main_page_para {
+		font-size: 14px;
+		}
+		}
+		.slider_btn {
+		display: inline-block;
+		color: #fff;
+		border: 2px solid #fefeff;
+		padding: 6px 25px;
+		border-radius: 25px;
+		margin-bottom: 25px;
+		font-size: 16px;
+		background-color: #de7607;
+		}
+		.slider_btn:hover {
+		background-color: #ff4;
+		color: #1e1f1f;
+		border-color: transparent;
+		}
+		.solutions_heading{
+			border:0px dashed; 
+			margin-top:25px; 
+			text-transform: uppercase;
+			font-size: 24px;
+		}
+
+		</style>
+	</head>
+	<body>
+		<!-- Your modal HTML structure -->
+		<div id="Alert_Modal" class="modal">
+			<div class="modal-content">
+				<p>Modal content goes here.</p>
+				<span class="close" onclick="closeModal()">&times;</span>
+			</div>
+		</div>
+		
+		<div class="hero_area" style="border:0px dashed #fff">
+			<!-- header section strats -->
+			<header class="header_section">
+				<div class="container-fluid">
+					
+				</div>
+			</header>
+			<!-- end header section -->
+			<!-- slider section -->
+			<section class="" style="height: auto;">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active main_page">
+							<div class="slider_item-box">
+								<div class="slider_item-container">
+									<div class="container-fluid">
+										<div class="row" style="background-image: url('/static/images/wallpaperflare.com_wallpaper.jpg'); background-repeat: no-repeat; background-size: cover;">
+											<div class="offset-md-2 col-md-4">
+												<div class="slider_item-detail">
+													<div class="responsive-container">
+														<h2 class="Headings">RESHAPE YOUR FUTURE <br /> THROUGH ASTROLOGY</h2>
+														<p>Get In-Depth Personalized Horoscope With 20+ years Predictions only at 299/-</p>
+														<p class="main_page_para">Relationship Solutions, Health Predictions, Love Marriage, Business & Job Solutions, Education, Career, Wealth etc.</p>
+														<p class="main_page_para">*After ordering you will receive kundali via mail within 5-7 Working Days.</p>
+														<div class="info-container">
+															<div class="info-item">
+																<img src="/static/images/group.png" width="50" height="50">
+																<p>10,000+ Happy Customers</p>
+															</div>
+														</div>
+														<div class="info-container">
+															<div class="info-item">
+																<img src="/static/images/stars.png" width="50" height="50" style="padding: 0px; margin: auto;">
+																<p>100% Accuracy</p>
+															</div>
+														</div>
+														<div style="border:0px solid; width:100%; float:left;">
+															<form action="/Get_booking/" method="post">
+																<input type="text" name="Product_Price" value="{{Product_1}}" style="display:none;">
+																<input type="text" name="Product_ID" value="{{Product_1_ID}}" style="display:none;">
+																<button type="submit" class="slider_btn">Buy Now</button>
+																
+																</button>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="hero_img-box">
+													<img src="/static/images/spiral-milky-way-galaxy-57bi3fxyfrkifr0t.webp" alt="" style="opacity: 1;">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- detail section -->
+		<section class="" style="background-color: #3d7b8c; ">
+			<div class="container-fluid" style="border:0px solid; padding: 20px 5px 5px 5px;">
+				<div class="">
+					<div class="col-lg-12">
+						<div class="" style="border:0px solid; width: 100%; word-wrap: break-word; color: #fff; padding-left: 5%">
+
+							<h3> &nbsp;Are you tired of your life problems? Do you want to fix everything in your life ?</h3>
+							<h3>(क्या आप अपने जीवन की समस्याओं से थक चुके हैं? क्या आप अपने जीवन में सब कुछ ठीक करना चाहते हैं? )</h3>
+						</div>
+					</div>
+					<div class="container" style="border:0px dotted; margin-top: 25px;">
+						<div class="product_container">
+							<div class="col-sm problem_card">
+								<center>
+								<img src="/static/images/esoteric.png" style="background: transparent; height: 50px; width: 50px; margin-top: 10px;">
+								<h5>BUSINESS PROBLEM ?</h5>
+								<!-- <h5>Title</h5> -->
+								<p>Is your business going through a financial loss? is your business not growing anymore?</p>
+								<!-- <p>4555488845</p> -->
+								</center>
+							</div>
+							<div class="col-sm problem_card">
+								<center>
+								<img src="/static/images/human.png" style="background: transparent; height: 50px; width: 50px; margin-top:10px">
+								<h5>RELATIONSHIP PROBLEMS ?</h5>
+								<!-- <h5>Title</h5> -->
+								<p>Is your partner not happy with you and doesn’t love you anymore? Do you want to do a love marriage?</p>
+								<!-- <p>4555488845</p> -->
+								</center>
+							</div>
+							<div class="col-sm problem_card">
+								<center>
+								<img src="/static/images/hand.png" style="background: transparent; height: 50px; width: 50px; margin-top:10px">
+								<h5>HEALTH PROBLEMS ?</h5>
+								<!-- <h5>Title</h5> -->
+								<p>Are you tired of your health problems? Still, you are not getting any solution from any doctor.</p>
+								<!-- <p>4555488845</p> -->
+								</center>
+							</div>
+							<div class="col-sm problem_card">
+								<center>
+								<img src="/static/images/check.png" style="background: transparent; height: 50px; width: 50px; margin-top:10px">
+								<h5>CAREER PROBLEMS ?</h5>
+								<!-- <h5>Title</h5> -->
+								<p>Do you want to accomplish something big in your life? but you don’t know which career is perfect for you.</p>
+								<!-- <p>4555488845</p> -->
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="" style="background-color: #1f4060; padding-top: 50px;">
+			<div class=" container heading_container" style="border: 0px solid">
+				<h2>
+				Then You Are in Right Place,
+				we will provide best solution.
+				</h2>
+				<p>
+					What You will get premium ?
+				</p>
+			</div>
+			<div class="container layout_padding" style="border: 0px solid">
+				<div class="product_container">
+					<div class="product_container">
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Marrige Solution</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">Love marriage, Arrange marriage and Relationship solutions. </p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Relationship Solution</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">This text is styled with some of the text formatting properties. The heading uses the text-align</p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Health Predictions</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">Predictions about your health issues, and their solutions. </p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Business & Job Solution</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">Frequent Business losses solution, and more tips to grow your business. </p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Right Time For Merrige</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">ThisRight time to get Married with your life partner. </p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Stone Recommendation</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">This text is styled with some of the text formatting properties. The heading uses the text-align</p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Educatio, Career, Wealth etc.</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">Become the most Sincere and Top student of you Class.</p>
+						</div>
+						
+						<div class="col-sm-4 sub_card" style="border:0px solid;margin: 10px; background-color: #ed9326; border-radius: 10px;">
+							<img src="/static/images/check.png" style="float: left; width: 50px; margin: 15px 10px 15px 1px; border: 0px solid;">
+							<h4 class="solutions_heading">Your Dream Home & Luxury Life</h4>
+							<p style="border:0px dashed;text-indent: 0px;text-align: justify;letter-spacing: 1px;">This text is styled with some of the text formatting properties. The heading uses the text-align</p>
+						</div>
+						
+						<div class="col-sm-5 card" style="border:0px solid;" >
+							<center>
+							<h2 style="padding-top: 10px; font-size:38px; font-weight:600"> &#x20B9; 401/-</h2>
+							<!-- <h2 style="padding-top: 10px; text-decoration: line-through;"> &#x20B9; 499/-</h2> -->
+							<!-- <strike style="padding-top: 10px;"> &#x20B9; 499/-</strike> -->
+							<!-- <s style="padding-top: 10px;"> &#x20B9; 499/-</s> -->
+							<del style="padding-top: 10px; color: #222"> &#x20B9; 501/-</del>
+							<br>
+							<br>
+							<hr>
+							<h3 style="margin-top:-35px; border:0px solid; width:200px;background-color: #ed9326; border-radius:5px">Includes</h3>
+							<br>
+							</center>
+							<ul>
+								<li>1 Description</li>
+								<li>2 Description</li>
+								<li>Description 3 is a bit longer the others</li>
+							</ul>
+							<center>
+							<form action="/Get_booking/" method="post">
+								<input type="text" name="Product_Price" value="{{Product_5}}" style="display:none;">
+								<input type="text" name="Product_ID" value="{{Product_5_ID}}" style="display:none;">
+								
+								<button type="submit" class="slider_btn">
+								Buy Now 
+								</button>
+							</form>
+							</center>
+							<br>
+						</div>
+						
+						<div class="col-sm-5 card" style="border:0px solid;" >
+							<center>
+							<h2 style="padding-top: 10px; font-size:38px; font-weight:600"> &#x20B9; 801/-</h2>
+							<!-- <h2 style="padding-top: 10px; text-decoration: line-through;"> &#x20B9; 499/-</h2> -->
+							<!-- <strike style="padding-top: 10px;"> &#x20B9; 499/-</strike> -->
+							<!-- <s style="padding-top: 10px;"> &#x20B9; 499/-</s> -->
+							<del style="padding-top: 10px; color: #222"> &#x20B9; 1001/-</del>
+							<br>
+							<br>
+							<hr>
+							<h3 style="margin-top:-35px; border:0px solid; width:200px;background-color: #ed9326; border-radius:5px">Includes</h3>
+							<br>
+							</center>
+							<ul>
+								<li>1 Description</li>
+								<li>2 Description</li>
+								<li>Description 3 is a bit longer the others</li>
+							</ul>
+							<center>
+							<form action="/Get_booking/" method="post">
+								<input type="text" name="Product_Price" value="{{Product_6}}" style="display:none;">
+								<input type="text" name="Product_ID" value="{{Product_6_ID}}" style="display:none;">
+								
+								<button type="submit" class="slider_btn">
+								Buy Now
+								</button>
+							</form>
+							</center>
+							<br>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+			<!-- end products section -->
+			<!-- find section -->
+			
+			<!-- end find section -->
+			<!-- client section -->
+			<section class="" style="background-color:#293d3d; height:auto; padding-top: 20px;" >
+				<center>
+				
+				<h2 class="w3-center" style="color:#fff">Testimonials</h2>
+				
+				<div class="" style="border:0px dotted #fff; width:90%; height:250px;margin: auto;">
+					<div class="mySlides" style="border: 0px dashed #fff; width:100%">
+						<div style="margin: auto; width: 100%; border: 0px solid #73AD21; padding: 20px;">
+							<div style="border:0px solid; float: left; width:auto;">
+								<img src="/static/images/puru.jpeg" style="width:60px; height:60px; float: left;">
+							</div>
+							<div style="border:0px solid; float:left; width:auto; height: 65px;padding-top: 20px;margin-left: 0%; ">
+								<h4 style="float: left; margin-left:15px; color:#fff; font-size:20px; font-weight: 600;">Purvesh Dave
+								</h4>
+							</div>
+						</div>
+						<br>
+						<div style="border:0px solid #ff4;margin-top:15px; float: center; width: 80%; color: #fff;margin-left: 2%; margin-right: 2%;">
+							<p> "What problems will happen in your life, we will give you the best remedies to prevent bad things."</p>
+						</div>
+					</div>
+					<div class="mySlides" style="border: 0px dashed #fff; width:100%">
+						<div style="margin: auto; width: 100%; border: 0px solid #73AD21; padding: 20px;">
+							<div style="border:0px solid; float: left; width:auto;">
+								<img src="/static/images/Teju.jpeg" style="width:60px; height:60px; float: left;">
+							</div>
+							<div style="border:0px solid; float:left; width:auto; height: 65px;padding-top: 20px;margin-left: 0%; ">
+								<h4 style="float: left; margin-left:15px; color:#fff; font-size:20px; font-weight: 600;">Tejash Dave
+								</h4>
+							</div>
+						</div>
+						<br>
+						<div style="border:0px solid #ff4;margin-top:15px; float: center; width: 80%; color: #fff;margin-left: 2%; margin-right: 2%;">
+							<p> "What problems will happen in your life, we will give you the best remedies to prevent bad things."</p>
+						</div>
+					</div>
+					<div class="mySlides" style="border: 0px dashed #fff; width:100%">
+						
+						<div style="margin: auto; width: 100%; border: 0px solid #73AD21; padding: 20px;">
+							<div style="border:0px solid; float: left; width:auto;">
+								<img src="/static/images/Water Sprinkler(1).svg" style="width:60px; height:60px; float: left;">
+							</div>
+							<div style="border:0px solid; float:left; width:auto; height: 65px;padding-top: 20px;margin-left: 0%; ">
+								<h4 style="float: left; margin-left:15px; color:#fff; font-size:20px; font-weight: 600;">Ashwin Prajapati
+								</h4>
+							</div>
+							
+						</div>
+						<br>
+						
+						<div style="border:0px solid #ff4;margin-top:15px; float: center; width: 80%; color: #fff;margin-left: 2%; margin-right: 2%;">
+							
+							<p> "What problems will happen in your life, we will give you the best remedies to prevent bad things."</p>
+						</div>
+						
+					</div>
+					
+					
+				</div>
+				<button class="prev" onclick="plusSlides(-1)">❮</button>
+				<button class="next" onclick="plusSlides(1)">❯</button>
+				</center>
+				<script>
+				let slideIndex = 1;
+				showSlides(slideIndex);
+				function plusSlides(n) {
+				showSlides(slideIndex += n);
+				}
+				function currentSlide(n) {
+				showSlides(slideIndex = n);
+				}
+				function showSlides(n) {
+				let i;
+				let slides = document.getElementsByClassName("mySlides");
+				if (n > slides.length) { slideIndex = 1 }
+				if (n < 1) { slideIndex = slides.length }
+				for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+				}
+				slides[slideIndex - 1].style.display = "block";
+				}
+				// Automatic slideshow
+				setInterval(function () {
+				plusSlides(1);
+				}, 3000); // Change slide every 2 seconds
+				</script>
+			</section>
+			
+			<section class="container-fluid footer_section">
+				<p>
+					Terms & Condition || All Rights Reserved By ||<strong>P D Dave</strong> || Copyright &copy; 2024 - 2025
+				</p>
+				<br>
+				<p>______________________________ P D Dave, B/Top/2,Nandeshwar Apt Nr.Vastrapur Railway Crossing, Satellite, Ah,edabad, 380015 </p>
+				<br>
+				<p><strong>For Enquiry : Email@id.com. +91-9327052242</strong></p>
+				<br>
+				<br>
+				<br>
+				<br>
+			</section>
+			<section>
+				<div id="555" >
+					
+					<a href="/Book_Consultation/" id="floating-button">Book&nbsp;Appointment&nbsp;!&nbsp;&#128073; </a>
+				</div>
+				<div id="floating_button_whatsapp">
+					<a href="https://wa.me/9327052242?text=Hey I need Help on http://127.0.0.1:8000/Premium-persionalized-kundli " target="_blank" title="Chat with us on WhatsApp">
+						<img src="/static/images/whatsapp.png" alt="WhatsApp Icon" height="60" width="60">
+					</a>
+				</div>
+				
+			</section>
+			<!-- footer section -->
+			<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+			<script type="text/javascript" src="/static/js/bootstrap.js"></script>
+			<script>
+			document.addEventListener('DOMContentLoaded', function () {
+			// Check if Payment_Success is equal to 1
+			// Function to open a simple alert
+			function openAlert() {
+			alert('Payment Received Successfully!');
+			}
+			// Check the condition and open the alert if {Payment_Success} is equal to 1
+			if ({Payment_Success} == 1) {
+			openAlert();
+			}
+			});
+			</script>
+		</body>
+	</html>

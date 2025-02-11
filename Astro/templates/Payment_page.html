@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="180000;URL='/Buying_page/'" />   
+        
+        <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        }
+        .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        max-width: 100%;
+        margin: auto;
+        padding: 20px;
+        }
+        .consultation-form {
+        flex: 1;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+        margin-bottom: 20px;
+        }
+        .payment-mode {
+        flex: 1;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left: 20px;
+        margin-bottom: 20px;
+        }
+        .form-group {
+        margin-bottom: 20px;
+        }
+        label {
+        font-weight: bold;
+        }
+        @media (max-width: 768px) {
+        .container {
+        flex-direction: column;
+        align-items: center;
+        }
+        .consultation-form,
+        .payment-mode {
+        margin-right: 0;
+        margin-left: 0;
+        }
+        }
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+        th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        }
+        th.sub_total, td.sub_total {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: right;
+        }
+        th {
+        background-color: #4caf50;
+        color: white;
+        }
+        .PlaceOrder_button{
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        font-style: none;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        }
+        .PlaceOrder_button:hover {
+        background-color: #45a049;
+        color: #fff;
+        font-style: none;
+        text-decoration: none;
+        }
+        .payment-info{
+        font-size: 14px;
+        font-style: italic;
+        color: #62605f;
+        }
+        .disable-btn {
+        background-color: #ccc !important;
+        cursor: not-allowed;
+        }
+        .form-check {
+        display: inline-block;
+        margin-right: 10px; /* Optional: Add some margin between radio buttons */
+        }
+        /*input[type=radio] {
+        border: 0px;
+        height: 20px;
+        width: 20px;
+        }*/
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <h2>Select Payment Method</h2>
+        <div class="payment-mode">
+            <div class="right-form">
+                <h3>Your Order</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="sub_total">Sub Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>########## x 1</td>
+                            <td class="sub_total">{{ display_amount }}</td>
+                        </tr>
+                        <tr>
+                            <td>GST {{applied_GST}}%</td>
+                            <td class="sub_total">{{ gst }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sub Total</td>
+                            <td class="sub_total">{{ display_amount }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td class="sub_total">{{ total_payment }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <p class="payment-info"> *Credit Card/Debit Card/NetBanking </p>
+                    <p class="payment-info">
+                        Pay securely by Credit or Debit card or Internet Banking through Razorpay.
+                    Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                </div>
+                <button class="PlaceOrder_button" id="pay-btn" type="button" style="display:block;">Place Order</button>
+                
+            </div>
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        // Function to click the button
+        function clickButton() {
+        document.getElementById('pay-btn').click();
+        }
+        // Call the function when the window has loaded
+        window.onload = clickButton;
+        });
+        </script>
+        
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+        var options = {
+        
+        // Enter the Key ID generated from the Dashboard
+        key: "{{ razorpay_merchant_key }}",
+        
+        // Amount is in currency subunits.
+        // Default currency is INR. Hence,
+        // 50000 refers to 50000 paise
+        amount: "{{ razorpay_amount }}",
+        currency: "{{ currency }}",
+        
+        // Your/store name.
+        name: "Astro",
+        
+        // Pass the `id` obtained in the response of Step 1
+        order_id: "{{ razorpay_order_id }}",
+        callback_url: "{{ callback_url }}",
+        };
+        
+        // initialise razorpay with the options.
+        var rzp1 = new Razorpay(options);
+        
+        // add event listener to the payment button.
+        document.getElementById("pay-btn").onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+        };
+        </script>
+        <script>
+        // Set the delay time to 3 minutes (180,000 milliseconds)
+        // var delayTime = 180000;
+        var delayTime = 5000;
+
+        // Function to redirect after 3 minutes
+        function redirectToPage2() {
+            // Use setTimeout to delay the redirection
+            setTimeout(function () {
+                // Change the URL to the desired destination
+                window.location.href = '/Buying_page/';
+            }, delayTime);
+        }
+
+        // Call the function when the page loads
+        window.onload = redirectToPage2;
+    </script>
+    </body>
+</html>

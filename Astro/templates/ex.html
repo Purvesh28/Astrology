@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <!-- Include your CSS and other dependencies here -->
+</head>
+<body>
+
+<!-- Your modal HTML structure -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>Modal content goes here.</p>
+    </div>
+</div>
+
+<!-- Your page content -->
+
+<script>
+// Check if Payment_Success is equal to 1
+var Payment_Success = 1;
+
+// Function to open the modal
+function openModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+
+    // Automatically close the modal after 3 seconds
+    setTimeout(function () {
+        closeModal();
+    }, 3000);
+}
+
+// Function to close the modal
+function closeModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+}
+
+// Check the condition and open the modal if Payment_Success is equal to 1
+if (Payment_Success === 1) {
+    openModal();
+}
+</script>
+
+</body>
+</html>
